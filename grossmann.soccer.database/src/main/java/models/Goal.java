@@ -1,21 +1,22 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_goal", schema = "soccer", catalog = "")
 public class Goal {
     private int goalGetterId;
     private String goalGetterName;
-    private int goalId;
-    private byte isOverTime;
-    private byte isOwnGoal;
-    private byte isPenalty;
+    private int id;
+    private boolean isOverTime;
+    private boolean isOwnGoal;
+    private boolean isPenalty;
     private int matchMinute;
     private int scoreTeam1;
     private int scoreTeam2;
     private String comment;
-    private Match tMatchByMatchId;
+    private Match match;
 
     public Goal() {
     }
@@ -42,42 +43,42 @@ public class Goal {
 
     @Id
     @Column(name = "GoalID")
-    public int getGoalId() {
-        return goalId;
+    public int getId() {
+        return id;
     }
 
-    public void setGoalId(int goalId) {
-        this.goalId = goalId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
     @Column(name = "IsOverTime")
-    public byte getIsOverTime() {
+    public boolean isOverTime() {
         return isOverTime;
     }
 
-    public void setIsOverTime(byte isOverTime) {
-        this.isOverTime = isOverTime;
+    public void setOverTime(boolean overTime) {
+        isOverTime = overTime;
     }
 
     @Basic
     @Column(name = "IsOwnGoal")
-    public byte getIsOwnGoal() {
+    public boolean isOwnGoal() {
         return isOwnGoal;
     }
 
-    public void setIsOwnGoal(byte isOwnGoal) {
-        this.isOwnGoal = isOwnGoal;
+    public void setOwnGoal(boolean ownGoal) {
+        isOwnGoal = ownGoal;
     }
 
     @Basic
     @Column(name = "IsPenalty")
-    public byte getIsPenalty() {
+    public boolean isPenalty() {
         return isPenalty;
     }
 
-    public void setIsPenalty(byte isPenalty) {
-        this.isPenalty = isPenalty;
+    public void setPenalty(boolean penalty) {
+        isPenalty = penalty;
     }
 
     @Basic
@@ -124,46 +125,32 @@ public class Goal {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Goal goal = (Goal) o;
-
-        if (goalGetterId != goal.goalGetterId) return false;
-        if (goalId != goal.goalId) return false;
-        if (isOverTime != goal.isOverTime) return false;
-        if (isOwnGoal != goal.isOwnGoal) return false;
-        if (isPenalty != goal.isPenalty) return false;
-        if (matchMinute != goal.matchMinute) return false;
-        if (scoreTeam1 != goal.scoreTeam1) return false;
-        if (scoreTeam2 != goal.scoreTeam2) return false;
-        if (goalGetterName != null ? !goalGetterName.equals(goal.goalGetterName) : goal.goalGetterName != null)
-            return false;
-        if (comment != null ? !comment.equals(goal.comment) : goal.comment != null) return false;
-
-        return true;
+        return goalGetterId == goal.goalGetterId &&
+                id == goal.id &&
+                isOverTime == goal.isOverTime &&
+                isOwnGoal == goal.isOwnGoal &&
+                isPenalty == goal.isPenalty &&
+                matchMinute == goal.matchMinute &&
+                scoreTeam1 == goal.scoreTeam1 &&
+                scoreTeam2 == goal.scoreTeam2 &&
+                Objects.equals(goalGetterName, goal.goalGetterName) &&
+                Objects.equals(comment, goal.comment);
     }
 
     @Override
     public int hashCode() {
-        int result = goalGetterId;
-        result = 31 * result + (goalGetterName != null ? goalGetterName.hashCode() : 0);
-        result = 31 * result + goalId;
-        result = 31 * result + (int) isOverTime;
-        result = 31 * result + (int) isOwnGoal;
-        result = 31 * result + (int) isPenalty;
-        result = 31 * result + matchMinute;
-        result = 31 * result + scoreTeam1;
-        result = 31 * result + scoreTeam2;
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        return result;
+
+        return Objects.hash(goalGetterId, goalGetterName, id, isOverTime, isOwnGoal, isPenalty, matchMinute, scoreTeam1, scoreTeam2, comment);
     }
 
     @ManyToOne
     @JoinColumn(name = "MatchID", referencedColumnName = "MatchID", nullable = false)
-    public Match gettMatchByMatchId() {
-        return tMatchByMatchId;
+    public Match getMatch() {
+        return match;
     }
 
-    public void settMatchByMatchId(Match tMatchByMatchId) {
-        this.tMatchByMatchId = tMatchByMatchId;
+    public void setMatch(Match match) {
+        this.match = match;
     }
 }

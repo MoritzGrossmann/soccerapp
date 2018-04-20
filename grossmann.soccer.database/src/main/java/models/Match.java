@@ -3,36 +3,37 @@ package models;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_match", schema = "soccer", catalog = "")
 public class Match {
-    private int matchId;
+    private int id;
     private Date lastUpdateTime;
-    private Date matchDateTime;
-    private Date matchDateTimeUtc;
-    private byte matchIsFinished;
+    private Date dateTime;
+    private Date dateTimeUtc;
+    private boolean isFinished;
     private int numberOfViewers;
     private String timeZoneId;
-    private Collection<Goal> tGoalsByMatchId;
-    private League tLeagueByLeagueId;
-    private Location tLocationByLocationId;
-    private Team tTeamByTeam1Id;
-    private Team tTeamByTeam2Id;
-    private Group tGroupByGroupId;
-    private Collection<MatchResult> tMatchResultsByMatchId;
+    private Collection<Goal> goals;
+    private League league;
+    private Location location;
+    private Team team1;
+    private Team team2;
+    private Group group;
+    private Collection<MatchResult> results;
 
     public Match() {
     }
 
     @Id
     @Column(name = "MatchID")
-    public int getMatchId() {
-        return matchId;
+    public int getId() {
+        return id;
     }
 
-    public void setMatchId(int matchId) {
-        this.matchId = matchId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
@@ -47,32 +48,32 @@ public class Match {
 
     @Basic
     @Column(name = "MatchDateTime")
-    public Date getMatchDateTime() {
-        return matchDateTime;
+    public Date getDateTime() {
+        return dateTime;
     }
 
-    public void setMatchDateTime(Date matchDateTime) {
-        this.matchDateTime = matchDateTime;
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 
     @Basic
     @Column(name = "MatchDateTimeUTC")
-    public Date getMatchDateTimeUtc() {
-        return matchDateTimeUtc;
+    public Date getDateTimeUtc() {
+        return dateTimeUtc;
     }
 
-    public void setMatchDateTimeUtc(Date matchDateTimeUtc) {
-        this.matchDateTimeUtc = matchDateTimeUtc;
+    public void setDateTimeUtc(Date dateTimeUtc) {
+        this.dateTimeUtc = dateTimeUtc;
     }
 
     @Basic
     @Column(name = "MatchIsFinished")
-    public byte getMatchIsFinished() {
-        return matchIsFinished;
+    public boolean isFinished() {
+        return isFinished;
     }
 
-    public void setMatchIsFinished(byte matchIsFinished) {
-        this.matchIsFinished = matchIsFinished;
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 
     @Basic
@@ -99,100 +100,87 @@ public class Match {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Match match = (Match) o;
-
-        if (matchId != match.matchId) return false;
-        if (matchIsFinished != match.matchIsFinished) return false;
-        if (numberOfViewers != match.numberOfViewers) return false;
-        if (lastUpdateTime != null ? !lastUpdateTime.equals(match.lastUpdateTime) : match.lastUpdateTime != null)
-            return false;
-        if (matchDateTime != null ? !matchDateTime.equals(match.matchDateTime) : match.matchDateTime != null)
-            return false;
-        if (matchDateTimeUtc != null ? !matchDateTimeUtc.equals(match.matchDateTimeUtc) : match.matchDateTimeUtc != null)
-            return false;
-        if (timeZoneId != null ? !timeZoneId.equals(match.timeZoneId) : match.timeZoneId != null) return false;
-
-        return true;
+        return id == match.id &&
+                isFinished == match.isFinished &&
+                numberOfViewers == match.numberOfViewers &&
+                Objects.equals(lastUpdateTime, match.lastUpdateTime) &&
+                Objects.equals(dateTime, match.dateTime) &&
+                Objects.equals(dateTimeUtc, match.dateTimeUtc) &&
+                Objects.equals(timeZoneId, match.timeZoneId);
     }
 
     @Override
     public int hashCode() {
-        int result = matchId;
-        result = 31 * result + (lastUpdateTime != null ? lastUpdateTime.hashCode() : 0);
-        result = 31 * result + (matchDateTime != null ? matchDateTime.hashCode() : 0);
-        result = 31 * result + (matchDateTimeUtc != null ? matchDateTimeUtc.hashCode() : 0);
-        result = 31 * result + (int) matchIsFinished;
-        result = 31 * result + numberOfViewers;
-        result = 31 * result + (timeZoneId != null ? timeZoneId.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, lastUpdateTime, dateTime, dateTimeUtc, isFinished, numberOfViewers, timeZoneId);
     }
 
-    @OneToMany(mappedBy = "tMatchByMatchId")
-    public Collection<Goal> gettGoalsByMatchId() {
-        return tGoalsByMatchId;
+    @OneToMany(mappedBy = "match")
+    public Collection<Goal> getGoals() {
+        return goals;
     }
 
-    public void settGoalsByMatchId(Collection<Goal> tGoalsByMatchId) {
-        this.tGoalsByMatchId = tGoalsByMatchId;
+    public void setGoals(Collection<Goal> goals) {
+        this.goals = goals;
     }
 
     @ManyToOne
     @JoinColumn(name = "LeagueID", referencedColumnName = "LeagueID", nullable = false)
-    public League gettLeagueByLeagueId() {
-        return tLeagueByLeagueId;
+    public League getLeague() {
+        return league;
     }
 
-    public void settLeagueByLeagueId(League tLeagueByLeagueId) {
-        this.tLeagueByLeagueId = tLeagueByLeagueId;
+    public void setLeague(League league) {
+        this.league = league;
     }
 
     @ManyToOne
     @JoinColumn(name = "LocationID", referencedColumnName = "LocationiD")
-    public Location gettLocationByLocationId() {
-        return tLocationByLocationId;
+    public Location getLocation() {
+        return location;
     }
 
-    public void settLocationByLocationId(Location tLocationByLocationId) {
-        this.tLocationByLocationId = tLocationByLocationId;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     @ManyToOne
     @JoinColumn(name = "Team1ID", referencedColumnName = "TeamID", nullable = false)
-    public Team gettTeamByTeam1Id() {
-        return tTeamByTeam1Id;
+    public Team getTeam1() {
+        return team1;
     }
 
-    public void settTeamByTeam1Id(Team tTeamByTeam1Id) {
-        this.tTeamByTeam1Id = tTeamByTeam1Id;
+    public void setTeam1(Team team1) {
+        this.team1 = team1;
     }
 
     @ManyToOne
     @JoinColumn(name = "Team2ID", referencedColumnName = "TeamID", nullable = false)
-    public Team gettTeamByTeam2Id() {
-        return tTeamByTeam2Id;
+    public Team getTeam2() {
+        return team2;
     }
 
-    public void settTeamByTeam2Id(Team tTeamByTeam2Id) {
-        this.tTeamByTeam2Id = tTeamByTeam2Id;
+    public void setTeam2(Team team2) {
+        this.team2 = team2;
     }
 
     @ManyToOne
     @JoinColumn(name = "GroupID", referencedColumnName = "GroupID")
-    public Group gettGroupByGroupId() {
-        return tGroupByGroupId;
+    public Group getGroup() {
+        return group;
     }
 
-    public void settGroupByGroupId(Group tGroupByGroupId) {
-        this.tGroupByGroupId = tGroupByGroupId;
+    public void setGroup(Group group) {
+        this.group = group;
     }
 
-    @OneToMany(mappedBy = "tMatchByMatchId")
-    public Collection<MatchResult> gettMatchResultsByMatchId() {
-        return tMatchResultsByMatchId;
+    @OneToMany(mappedBy = "match")
+    public Collection<MatchResult> getResults() {
+        return results;
     }
 
-    public void settMatchResultsByMatchId(Collection<MatchResult> tMatchResultsByMatchId) {
-        this.tMatchResultsByMatchId = tMatchResultsByMatchId;
+    public void setResults(Collection<MatchResult> results) {
+        this.results = results;
     }
 }

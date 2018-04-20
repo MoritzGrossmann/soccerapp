@@ -2,68 +2,64 @@ package models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_league", schema = "soccer", catalog = "")
 public class League {
-    private int leagueId;
-    private String leagueName;
-    private Collection<Match> tMatchesByLeagueId;
-
-    public League(int leagueId, String leagueName) {
-        this.leagueId = leagueId;
-        this.leagueName = leagueName;
-    }
+    private int id;
+    private String name;
+    private Collection<Match> league;
 
     public League() {
     }
 
-    @Id
-    @Column(name = "LeagueID")
-    public int getLeagueId() {
-        return leagueId;
+    public League(int id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public void setLeagueId(int leagueId) {
-        this.leagueId = leagueId;
+    @Id
+    @Column(name = "LeagueID")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
     @Column(name = "LeagueName")
-    public String getLeagueName() {
-        return leagueName;
+    public String getName() {
+        return name;
     }
 
-    public void setLeagueName(String leagueName) {
-        this.leagueName = leagueName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         League league = (League) o;
-
-        if (leagueId != league.leagueId) return false;
-        if (leagueName != null ? !leagueName.equals(league.leagueName) : league.leagueName != null) return false;
-
-        return true;
+        return id == league.id &&
+                Objects.equals(name, league.name);
     }
 
     @Override
     public int hashCode() {
-        int result = leagueId;
-        result = 31 * result + (leagueName != null ? leagueName.hashCode() : 0);
-        return result;
+
+        return Objects.hash(id, name);
     }
 
-    @OneToMany(mappedBy = "tLeagueByLeagueId")
-    public Collection<Match> gettMatchesByLeagueId() {
-        return tMatchesByLeagueId;
+    @OneToMany(mappedBy = "league")
+    public Collection<Match> getLeague() {
+        return league;
     }
 
-    public void settMatchesByLeagueId(Collection<Match> tMatchesByLeagueId) {
-        this.tMatchesByLeagueId = tMatchesByLeagueId;
+    public void setLeague(Collection<Match> league) {
+        this.league = league;
     }
 }

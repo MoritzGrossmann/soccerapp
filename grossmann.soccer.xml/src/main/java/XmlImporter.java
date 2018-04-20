@@ -78,7 +78,7 @@ public class XmlImporter {
             root.getChildren("Match", root.getNamespace()).forEach((Element xmlMatch) -> {
                 Match match = new Match();
 
-                match.setMatchId(Integer.parseInt(xmlMatch.getChildText("MatchID", xmlMatch.getNamespace())));
+                match.setId(Integer.parseInt(xmlMatch.getChildText("MatchID", xmlMatch.getNamespace())));
 
                 List<Goal> goals = new ArrayList<>();
 
@@ -88,7 +88,7 @@ public class XmlImporter {
                     goals.add(parseGoalXml(xmlGoal));
                 });
 
-                match.settGoalsByMatchId(goals);
+                match.setGoals(goals);
 
                 List<MatchResult> matchResults = new ArrayList<>();
 
@@ -99,7 +99,7 @@ public class XmlImporter {
                     matchResults.add(result);
                 });
 
-                match.settMatchResultsByMatchId(matchResults);
+                match.setResults(matchResults);
 
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -118,7 +118,7 @@ public class XmlImporter {
                         xmlMatch.getChildText("LeagueName", xmlMatch.getNamespace())
                 );
 
-                match.settLeagueByLeagueId(league);
+                match.setLeague(league);
 
                 Element xmlLocation = xmlMatch.getChild("Location", xmlMatch.getNamespace());
 
@@ -129,7 +129,7 @@ public class XmlImporter {
                             xmlLocation.getChildText("LocationStadium", xmlLocation.getNamespace())
                     );
 
-                    match.settLocationByLocationId(location);
+                    match.setLocation(location);
                 }
 
                 java.util.Date matchDateTime = null;
@@ -140,10 +140,10 @@ public class XmlImporter {
                     e.printStackTrace();
                 }
 
-                match.setMatchDateTime(new Date(matchDateTime.getTime()));
+                match.setDateTime(new Date(matchDateTime.getTime()));
 
                 try {
-                    match.setMatchDateTimeUtc(new Date(dateFormatter.parse(xmlMatch.getChildText("MatchDateTimeUTC",xmlMatch.getNamespace()).replace('T', ' ').replace('Z', ' ')).getTime()));
+                    match.setDateTimeUtc(new Date(dateFormatter.parse(xmlMatch.getChildText("MatchDateTimeUTC",xmlMatch.getNamespace()).replace('T', ' ').replace('Z', ' ')).getTime()));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -158,17 +158,17 @@ public class XmlImporter {
 
                 Element xmlTeam1 = xmlMatch.getChild("Team1", xmlMatch.getNamespace());
 
-                match.settTeamByTeam1Id(parseTeamXml(xmlTeam1));
+                match.setTeam1(parseTeamXml(xmlTeam1));
 
                 Element xmlTeam2 = xmlMatch.getChild("Team2", xmlMatch.getNamespace());
 
-                match.settTeamByTeam2Id(parseTeamXml(xmlTeam2));
+                match.setTeam2(parseTeamXml(xmlTeam2));
 
                 Element xmlGroup = xmlMatch.getChild("Group", xmlMatch.getNamespace());
 
-                match.settGroupByGroupId(parseGroupXml(xmlGroup));
+                match.setGroup(parseGroupXml(xmlGroup));
 
-                match.setMatchIsFinished(Byte.parseByte(xmlMatch.getChildText("MatchIsFinished", xmlMatch.getNamespace())));
+                match.setFinished(Boolean.parseBoolean(xmlMatch.getChildText("MatchIsFinished", xmlMatch.getNamespace())));
 
                 matches.add(match);
             });

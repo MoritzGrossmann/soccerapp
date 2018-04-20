@@ -2,31 +2,31 @@ package models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_team", schema = "soccer", catalog = "")
 public class Team {
     private String shortName;
-    private String teamIconUrl;
-    private int teamId;
+    private String iconUrl;
+    private int id;
     private String teamName;
-    private Collection<Match> tMatchesByTeamId;
-    private Collection<Match> tMatchesByTeamId_0;
-    private Collection<Player> tPlayersByTeamId;
+    private Collection<Match> matchesTeam1;
+    private Collection<Match> matchesTeam2;
+    private Collection<Player> layers;
 
-    public Team(int teamId, String shortName, String teamIconUrl,  String teamName) {
+    public Team(int teamId) {
+        this.id = teamId;
+    }
+
+    public Team(int id,String shortName, String iconUrl,  String teamName) {
         this.shortName = shortName;
-        this.teamIconUrl = teamIconUrl;
-        this.teamId = teamId;
+        this.iconUrl = iconUrl;
+        this.id = id;
         this.teamName = teamName;
     }
 
     public Team() {
-
-    }
-
-    public Team(int teamId) {
-        this.teamId = teamId;
     }
 
     @Basic
@@ -41,22 +41,22 @@ public class Team {
 
     @Basic
     @Column(name = "TeamIconUrl")
-    public String getTeamIconUrl() {
-        return teamIconUrl;
+    public String getIconUrl() {
+        return iconUrl;
     }
 
-    public void setTeamIconUrl(String teamIconUrl) {
-        this.teamIconUrl = teamIconUrl;
+    public void setIconUrl(String iconUrl) {
+        this.iconUrl = iconUrl;
     }
 
     @Id
     @Column(name = "TeamID")
-    public int getTeamId() {
-        return teamId;
+    public int getId() {
+        return id;
     }
 
-    public void setTeamId(int teamId) {
-        this.teamId = teamId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
@@ -73,50 +73,43 @@ public class Team {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Team team = (Team) o;
-
-        if (teamId != team.teamId) return false;
-        if (shortName != null ? !shortName.equals(team.shortName) : team.shortName != null) return false;
-        if (teamIconUrl != null ? !teamIconUrl.equals(team.teamIconUrl) : team.teamIconUrl != null) return false;
-        if (teamName != null ? !teamName.equals(team.teamName) : team.teamName != null) return false;
-
-        return true;
+        return id == team.id &&
+                Objects.equals(shortName, team.shortName) &&
+                Objects.equals(iconUrl, team.iconUrl) &&
+                Objects.equals(teamName, team.teamName);
     }
 
     @Override
     public int hashCode() {
-        int result = shortName != null ? shortName.hashCode() : 0;
-        result = 31 * result + (teamIconUrl != null ? teamIconUrl.hashCode() : 0);
-        result = 31 * result + teamId;
-        result = 31 * result + (teamName != null ? teamName.hashCode() : 0);
-        return result;
+
+        return Objects.hash(shortName, iconUrl, id, teamName);
     }
 
-    @OneToMany(mappedBy = "tTeamByTeam1Id")
-    public Collection<Match> gettMatchesByTeamId() {
-        return tMatchesByTeamId;
+    @OneToMany(mappedBy = "team1")
+    public Collection<Match> getMatchesTeam1() {
+        return matchesTeam1;
     }
 
-    public void settMatchesByTeamId(Collection<Match> tMatchesByTeamId) {
-        this.tMatchesByTeamId = tMatchesByTeamId;
+    public void setMatchesTeam1(Collection<Match> matchesTeam1) {
+        this.matchesTeam1 = matchesTeam1;
     }
 
-    @OneToMany(mappedBy = "tTeamByTeam2Id")
-    public Collection<Match> gettMatchesByTeamId_0() {
-        return tMatchesByTeamId_0;
+    @OneToMany(mappedBy = "team2")
+    public Collection<Match> getMatchesTeam2() {
+        return matchesTeam2;
     }
 
-    public void settMatchesByTeamId_0(Collection<Match> tMatchesByTeamId_0) {
-        this.tMatchesByTeamId_0 = tMatchesByTeamId_0;
+    public void setMatchesTeam2(Collection<Match> matchesTeam2) {
+        this.matchesTeam2 = matchesTeam2;
     }
 
-    @OneToMany(mappedBy = "tTeamByTeamId")
-    public Collection<Player> gettPlayersByTeamId() {
-        return tPlayersByTeamId;
+    @OneToMany(mappedBy = "team")
+    public Collection<Player> getLayers() {
+        return layers;
     }
 
-    public void settPlayersByTeamId(Collection<Player> tPlayersByTeamId) {
-        this.tPlayersByTeamId = tPlayersByTeamId;
+    public void setLayers(Collection<Player> layers) {
+        this.layers = layers;
     }
 }

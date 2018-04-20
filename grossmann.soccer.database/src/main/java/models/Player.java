@@ -2,11 +2,11 @@ package models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_player", schema = "soccer", catalog = "")
 public class Player {
-    private int id;
     private Integer trikotNr;
     private String name;
     private Date birthDate;
@@ -15,22 +15,10 @@ public class Player {
     private Integer yellowCards;
     private Integer yellowRedCards;
     private Integer redCards;
-
-    private Team tTeamByTeamId;
+    private int id;
+    private Team team;
 
     public Player() {
-    }
-
-
-    @Id
-    @GeneratedValue
-    @Column(name = "Id")
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     @Basic
@@ -113,46 +101,46 @@ public class Player {
         this.redCards = redCards;
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "Id")
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Player player = (Player) o;
-
-        if (trikotNr != null ? !trikotNr.equals(player.trikotNr) : player.trikotNr != null) return false;
-        if (name != null ? !name.equals(player.name) : player.name != null) return false;
-        if (birthDate != null ? !birthDate.equals(player.birthDate) : player.birthDate != null) return false;
-        if (minutes != null ? !minutes.equals(player.minutes) : player.minutes != null) return false;
-        if (goals != null ? !goals.equals(player.goals) : player.goals != null) return false;
-        if (yellowCards != null ? !yellowCards.equals(player.yellowCards) : player.yellowCards != null) return false;
-        if (yellowRedCards != null ? !yellowRedCards.equals(player.yellowRedCards) : player.yellowRedCards != null)
-            return false;
-        if (redCards != null ? !redCards.equals(player.redCards) : player.redCards != null) return false;
-
-        return true;
+        return id == player.id &&
+                Objects.equals(trikotNr, player.trikotNr) &&
+                Objects.equals(name, player.name) &&
+                Objects.equals(birthDate, player.birthDate) &&
+                Objects.equals(minutes, player.minutes) &&
+                Objects.equals(goals, player.goals) &&
+                Objects.equals(yellowCards, player.yellowCards) &&
+                Objects.equals(yellowRedCards, player.yellowRedCards) &&
+                Objects.equals(redCards, player.redCards);
     }
 
     @Override
     public int hashCode() {
-        int result = trikotNr != null ? trikotNr.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
-        result = 31 * result + (minutes != null ? minutes.hashCode() : 0);
-        result = 31 * result + (goals != null ? goals.hashCode() : 0);
-        result = 31 * result + (yellowCards != null ? yellowCards.hashCode() : 0);
-        result = 31 * result + (yellowRedCards != null ? yellowRedCards.hashCode() : 0);
-        result = 31 * result + (redCards != null ? redCards.hashCode() : 0);
-        return result;
+
+        return Objects.hash(trikotNr, name, birthDate, minutes, goals, yellowCards, yellowRedCards, redCards, id);
     }
 
     @ManyToOne
     @JoinColumn(name = "TeamID", referencedColumnName = "TeamID")
-    public Team gettTeamByTeamId() {
-        return tTeamByTeamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void settTeamByTeamId(Team tTeamByTeamId) {
-        this.tTeamByTeamId = tTeamByTeamId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }

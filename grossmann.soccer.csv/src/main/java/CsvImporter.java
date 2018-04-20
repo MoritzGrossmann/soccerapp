@@ -11,7 +11,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class CsvImporter {
 
@@ -25,6 +24,8 @@ public class CsvImporter {
 
     public Collection<Player> readPlayers() throws IOException {
 
+        DatabaseHelper databaseHelper = new DatabaseHelper();
+
         Collection<Player> players = new ArrayList<>();
 
         Reader reader = new FileReader(this.file);
@@ -37,7 +38,7 @@ public class CsvImporter {
 
         for (CSVRecord record : records) {
                 Player player = new Player();
-                player.settTeamByTeamId(new Team(Integer.parseInt(record.get("TeamId"))));
+                player.setTeam(databaseHelper.getTeamById(Integer.parseInt(record.get("TeamId"))));
                 try {
                     player.setTrikotNr(Integer.parseInt(record.get("TrikotNr")));
                 } catch (NumberFormatException e) {

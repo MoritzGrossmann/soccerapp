@@ -2,76 +2,71 @@ package models;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.Objects;
 
 @Entity
 @Table(name = "t_group", schema = "soccer", catalog = "")
 public class Group {
-    private int groupId;
-    private String groupName;
-    private int groupOrderId;
-    private Collection<Match> tMatchesByGroupId;
+    private int id;
+    private String name;
+    private int orderId;
+    private Collection<Match> matches;
 
     public Group() {
     }
 
     @Id
     @Column(name = "GroupID")
-    public int getGroupId() {
-        return groupId;
+    public int getId() {
+        return id;
     }
 
-    public void setGroupId(int groupId) {
-        this.groupId = groupId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
     @Column(name = "GroupName")
-    public String getGroupName() {
-        return groupName;
+    public String getName() {
+        return name;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Basic
     @Column(name = "GroupOrderID")
-    public int getGroupOrderId() {
-        return groupOrderId;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setGroupOrderId(int groupOrderId) {
-        this.groupOrderId = groupOrderId;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Group group = (Group) o;
-
-        if (groupId != group.groupId) return false;
-        if (groupOrderId != group.groupOrderId) return false;
-        if (groupName != null ? !groupName.equals(group.groupName) : group.groupName != null) return false;
-
-        return true;
+        return id == group.id &&
+                orderId == group.orderId &&
+                Objects.equals(name, group.name);
     }
 
     @Override
     public int hashCode() {
-        int result = groupId;
-        result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
-        result = 31 * result + groupOrderId;
-        return result;
+
+        return Objects.hash(id, name, orderId);
     }
 
-    @OneToMany(mappedBy = "tGroupByGroupId")
-    public Collection<Match> gettMatchesByGroupId() {
-        return tMatchesByGroupId;
+    @OneToMany(mappedBy = "group")
+    public Collection<Match> getMatches() {
+        return matches;
     }
 
-    public void settMatchesByGroupId(Collection<Match> tMatchesByGroupId) {
-        this.tMatchesByGroupId = tMatchesByGroupId;
+    public void setMatches(Collection<Match> matches) {
+        this.matches = matches;
     }
 }

@@ -1,5 +1,6 @@
 import models.Match;
 import models.Player;
+import models.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
@@ -11,6 +12,16 @@ public class DatabaseHelper {
 
     private EntityManager getEntityManager() {
         return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
+    }
+
+    private Collection<Match> getMatches() {
+        EntityManager entityManager = getEntityManager();
+        return null;
+    }
+
+    public Team getTeamById(int id) {
+        EntityManager entityManager = getEntityManager();
+        return entityManager.find(Team.class, id);
     }
 
     public void persistPlayer(Player player) {
