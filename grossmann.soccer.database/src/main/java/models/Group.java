@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "t_group", schema = "soccer", catalog = "")
@@ -8,6 +9,7 @@ public class Group {
     private int groupId;
     private String groupName;
     private int groupOrderId;
+    private Collection<Match> tMatchesByGroupId;
 
     @Id
     @Column(name = "GroupID")
@@ -59,5 +61,14 @@ public class Group {
         result = 31 * result + (groupName != null ? groupName.hashCode() : 0);
         result = 31 * result + groupOrderId;
         return result;
+    }
+
+    @OneToMany(mappedBy = "tGroupByGroupId")
+    public Collection<Match> gettMatchesByGroupId() {
+        return tMatchesByGroupId;
+    }
+
+    public void settMatchesByGroupId(Collection<Match> tMatchesByGroupId) {
+        this.tMatchesByGroupId = tMatchesByGroupId;
     }
 }

@@ -15,6 +15,7 @@ public class Goal {
     private int scoreTeam1;
     private int scoreTeam2;
     private String comment;
+    private Match tMatchByMatchId;
 
     @Basic
     @Column(name = "GoalGetterID")
@@ -151,5 +152,15 @@ public class Goal {
         result = 31 * result + scoreTeam2;
         result = 31 * result + (comment != null ? comment.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "MatchID", referencedColumnName = "MatchID", nullable = false)
+    public Match gettMatchByMatchId() {
+        return tMatchByMatchId;
+    }
+
+    public void settMatchByMatchId(Match tMatchByMatchId) {
+        this.tMatchByMatchId = tMatchByMatchId;
     }
 }

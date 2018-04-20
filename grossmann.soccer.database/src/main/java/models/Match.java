@@ -2,6 +2,7 @@ package models;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 @Entity
 @Table(name = "t_match", schema = "soccer", catalog = "")
@@ -13,11 +14,13 @@ public class Match {
     private byte matchIsFinished;
     private int numberOfViewers;
     private String timeZoneId;
+    private Collection<Goal> tGoalsByMatchId;
     private League tLeagueByLeagueId;
     private Location tLocationByLocationId;
+    private Team tTeamByTeam1Id;
+    private Team tTeamByTeam2Id;
     private Group tGroupByGroupId;
-    private Team tTeam1ByTeam1Id;
-    private Team tTeam2ByTeam2Id;
+    private Collection<MatchResult> tMatchResultsByMatchId;
 
     @Id
     @Column(name = "MatchID")
@@ -106,8 +109,7 @@ public class Match {
         if (matchDateTimeUtc != null ? !matchDateTimeUtc.equals(match.matchDateTimeUtc) : match.matchDateTimeUtc != null)
             return false;
         if (timeZoneId != null ? !timeZoneId.equals(match.timeZoneId) : match.timeZoneId != null) return false;
-        if (tTeam1ByTeam1Id != null ? !tTeam1ByTeam1Id.equals(match.tTeam1ByTeam1Id) : match.tTeam1ByTeam1Id != null) return false;
-        if (tTeam2ByTeam2Id != null ? !tTeam2ByTeam2Id.equals(match.tTeam2ByTeam2Id) : match.tTeam2ByTeam2Id != null) return false;
+
         return true;
     }
 
@@ -121,6 +123,15 @@ public class Match {
         result = 31 * result + numberOfViewers;
         result = 31 * result + (timeZoneId != null ? timeZoneId.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "tMatchByMatchId")
+    public Collection<Goal> gettGoalsByMatchId() {
+        return tGoalsByMatchId;
+    }
+
+    public void settGoalsByMatchId(Collection<Goal> tGoalsByMatchId) {
+        this.tGoalsByMatchId = tGoalsByMatchId;
     }
 
     @ManyToOne
@@ -144,6 +155,26 @@ public class Match {
     }
 
     @ManyToOne
+    @JoinColumn(name = "Team1ID", referencedColumnName = "TeamID", nullable = false)
+    public Team gettTeamByTeam1Id() {
+        return tTeamByTeam1Id;
+    }
+
+    public void settTeamByTeam1Id(Team tTeamByTeam1Id) {
+        this.tTeamByTeam1Id = tTeamByTeam1Id;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "Team2ID", referencedColumnName = "TeamID", nullable = false)
+    public Team gettTeamByTeam2Id() {
+        return tTeamByTeam2Id;
+    }
+
+    public void settTeamByTeam2Id(Team tTeamByTeam2Id) {
+        this.tTeamByTeam2Id = tTeamByTeam2Id;
+    }
+
+    @ManyToOne
     @JoinColumn(name = "GroupID", referencedColumnName = "GroupID")
     public Group gettGroupByGroupId() {
         return tGroupByGroupId;
@@ -153,23 +184,12 @@ public class Match {
         this.tGroupByGroupId = tGroupByGroupId;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "Team1ID", referencedColumnName = "TeamID")
-    public Team gettTeam1ByTeam1Id() {
-        return tTeam1ByTeam1Id;
+    @OneToMany(mappedBy = "tMatchByMatchId")
+    public Collection<MatchResult> gettMatchResultsByMatchId() {
+        return tMatchResultsByMatchId;
     }
 
-    public void settTeam1ByTeam1Id(Team tTeam1ByTeam1Id) {
-        this.tTeam1ByTeam1Id = tTeam1ByTeam1Id;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "Team2ID", referencedColumnName = "TeamID")
-    public Team gettTeam2ByTeam2Id() {
-        return tTeam2ByTeam2Id;
-    }
-
-    public void settTeam2ByTeam2Id(Team tTeam2ByTeam2Id) {
-        this.tTeam2ByTeam2Id = tTeam2ByTeam2Id;
+    public void settMatchResultsByMatchId(Collection<MatchResult> tMatchResultsByMatchId) {
+        this.tMatchResultsByMatchId = tMatchResultsByMatchId;
     }
 }

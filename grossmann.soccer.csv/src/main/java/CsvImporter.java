@@ -9,7 +9,7 @@ import java.io.Reader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Collection;
 import java.util.List;
 
 public class CsvImporter {
@@ -22,9 +22,9 @@ public class CsvImporter {
         this.file = file;
     }
 
-    public List<Player> readPlayers() throws IOException {
+    public Collection<Player> readPlayers() throws IOException {
 
-        List<Player> players = new ArrayList<>();
+        Collection<Player> players = new ArrayList<>();
 
         Reader reader = new FileReader(this.file);
 
@@ -36,7 +36,7 @@ public class CsvImporter {
 
         for (CSVRecord record : records) {
                 Player player = new Player();
-                player.setTeam(Integer.parseInt(record.get("TeamId")));
+                player.setTeamId(Integer.parseInt(record.get("TeamId")));
                 try {
                     player.setTrikotNr(Integer.parseInt(record.get("TrikotNr")));
                 } catch (NumberFormatException e) {

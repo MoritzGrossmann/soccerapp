@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "t_team", schema = "soccer", catalog = "")
@@ -9,15 +10,19 @@ public class Team {
     private String teamIconUrl;
     private int teamId;
     private String teamName;
+    private Collection<Match> tMatchesByTeamId;
+    private Collection<Match> tMatchesByTeamId_0;
+    private Collection<Player> tPlayersByTeamId;
 
-    public Team(int teamId, String shortName, String teamIconUrl, String teamName) {
-        this.teamId = teamId;
+    public Team(int teamId, String shortName, String teamIconUrl,  String teamName) {
         this.shortName = shortName;
         this.teamIconUrl = teamIconUrl;
+        this.teamId = teamId;
         this.teamName = teamName;
     }
 
     public Team() {
+
     }
 
     @Basic
@@ -82,5 +87,32 @@ public class Team {
         result = 31 * result + teamId;
         result = 31 * result + (teamName != null ? teamName.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "tTeamByTeam1Id")
+    public Collection<Match> gettMatchesByTeamId() {
+        return tMatchesByTeamId;
+    }
+
+    public void settMatchesByTeamId(Collection<Match> tMatchesByTeamId) {
+        this.tMatchesByTeamId = tMatchesByTeamId;
+    }
+
+    @OneToMany(mappedBy = "tTeamByTeam2Id")
+    public Collection<Match> gettMatchesByTeamId_0() {
+        return tMatchesByTeamId_0;
+    }
+
+    public void settMatchesByTeamId_0(Collection<Match> tMatchesByTeamId_0) {
+        this.tMatchesByTeamId_0 = tMatchesByTeamId_0;
+    }
+
+    @OneToMany(mappedBy = "tTeamByTeamId")
+    public Collection<Player> gettPlayersByTeamId() {
+        return tPlayersByTeamId;
+    }
+
+    public void settPlayersByTeamId(Collection<Player> tPlayersByTeamId) {
+        this.tPlayersByTeamId = tPlayersByTeamId;
     }
 }

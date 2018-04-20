@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="grossmann.soccerapp.web:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/grossmann_soccerapp_web_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="grossmann.soccerapp.web/web/Web" />
+      <element id="javaee-facet-resources" facet="grossmann.soccer.web/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="grossmann.soccerapp.web" />
+          <element id="module-output" name="grossmann.soccer.web" />
         </element>
       </element>
     </root>

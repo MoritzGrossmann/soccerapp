@@ -1,6 +1,7 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "t_location", schema = "soccer", catalog = "")
@@ -8,6 +9,13 @@ public class Location {
     private int locationiD;
     private String locationCity;
     private String locationStadium;
+    private Collection<Match> tMatchesByLocationiD;
+
+    public Location(int locationiD, String locationCity, String locationStadium) {
+        this.locationiD = locationiD;
+        this.locationCity = locationCity;
+        this.locationStadium = locationStadium;
+    }
 
     @Id
     @Column(name = "LocationiD")
@@ -63,9 +71,12 @@ public class Location {
         return result;
     }
 
-    public Location(int locationiD, String locationCity, String locationStadium) {
-        this.locationiD = locationiD;
-        this.locationCity = locationCity;
-        this.locationStadium = locationStadium;
+    @OneToMany(mappedBy = "tLocationByLocationId")
+    public Collection<Match> gettMatchesByLocationiD() {
+        return tMatchesByLocationiD;
+    }
+
+    public void settMatchesByLocationiD(Collection<Match> tMatchesByLocationiD) {
+        this.tMatchesByLocationiD = tMatchesByLocationiD;
     }
 }

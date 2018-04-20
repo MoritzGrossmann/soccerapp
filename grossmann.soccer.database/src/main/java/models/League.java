@@ -1,12 +1,19 @@
 package models;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "t_league", schema = "soccer", catalog = "")
 public class League {
     private int leagueId;
     private String leagueName;
+    private Collection<Match> tMatchesByLeagueId;
+
+    public League(int leagueId, String leagueName) {
+        this.leagueId = leagueId;
+        this.leagueName = leagueName;
+    }
 
     @Id
     @Column(name = "LeagueID")
@@ -48,8 +55,12 @@ public class League {
         return result;
     }
 
-    public League(int leagueId, String leagueName) {
-        this.leagueId = leagueId;
-        this.leagueName = leagueName;
+    @OneToMany(mappedBy = "tLeagueByLeagueId")
+    public Collection<Match> gettMatchesByLeagueId() {
+        return tMatchesByLeagueId;
+    }
+
+    public void settMatchesByLeagueId(Collection<Match> tMatchesByLeagueId) {
+        this.tMatchesByLeagueId = tMatchesByLeagueId;
     }
 }

@@ -88,7 +88,7 @@ public class XmlImporter {
                     goals.add(parseGoalXml(xmlGoal));
                 });
 
-                //match.setGoals(goals);
+                match.settGoalsByMatchId(goals);
 
                 List<MatchResult> matchResults = new ArrayList<>();
 
@@ -99,7 +99,7 @@ public class XmlImporter {
                     matchResults.add(result);
                 });
 
-                //match.setMatchResults(matchResults);
+                match.settMatchResultsByMatchId(matchResults);
 
                 SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
@@ -158,11 +158,11 @@ public class XmlImporter {
 
                 Element xmlTeam1 = xmlMatch.getChild("Team1", xmlMatch.getNamespace());
 
-                match.settTeam1ByTeam1Id(parseTeamXml(xmlTeam1));
+                match.settTeamByTeam1Id(parseTeamXml(xmlTeam1));
 
                 Element xmlTeam2 = xmlMatch.getChild("Team2", xmlMatch.getNamespace());
 
-                match.settTeam2ByTeam2Id(parseTeamXml(xmlTeam2));
+                match.settTeamByTeam2Id(parseTeamXml(xmlTeam2));
 
                 Element xmlGroup = xmlMatch.getChild("Group", xmlMatch.getNamespace());
 
