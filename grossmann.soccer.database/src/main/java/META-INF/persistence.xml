@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="soccerunit" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>models.Goal</class>
+        <class>models.Group</class>
+        <class>models.League</class>
+        <class>models.Location</class>
+        <class>models.Match</class>
+        <class>models.MatchResult</class>
+        <class>models.Player</class>
+        <class>models.Team</class>
+        <properties>
+            <property name="eclipselink.jdbc.url" value="jdbc:mysql://localhost:3306/soccer"/>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.user" value="soccer"/>
+            <property name="javax.persistence.jdbc.password" value="soccer"/>
+            <property name="eclipselink.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+        </properties>
+
+    </persistence-unit>
+</persistence>
