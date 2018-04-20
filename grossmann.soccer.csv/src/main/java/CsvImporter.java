@@ -1,4 +1,5 @@
 import models.Player;
+import models.Team;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
 
@@ -36,7 +37,7 @@ public class CsvImporter {
 
         for (CSVRecord record : records) {
                 Player player = new Player();
-                player.setTeamId(Integer.parseInt(record.get("TeamId")));
+                player.settTeamByTeamId(new Team(Integer.parseInt(record.get("TeamId"))));
                 try {
                     player.setTrikotNr(Integer.parseInt(record.get("TrikotNr")));
                 } catch (NumberFormatException e) {

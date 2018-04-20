@@ -17,6 +17,9 @@ public class Goal {
     private String comment;
     private Match tMatchByMatchId;
 
+    public Goal() {
+    }
+
     @Basic
     @Column(name = "GoalGetterID")
     public int getGoalGetterId() {

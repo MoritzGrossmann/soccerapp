@@ -15,6 +15,9 @@ public class League {
         this.leagueName = leagueName;
     }
 
+    public League() {
+    }
+
     @Id
     @Column(name = "LeagueID")
     public int getLeagueId() {

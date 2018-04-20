@@ -11,6 +11,9 @@ public class Group {
     private int groupOrderId;
     private Collection<Match> tMatchesByGroupId;
 
+    public Group() {
+    }
+
     @Id
     @Column(name = "GroupID")
     public int getGroupId() {

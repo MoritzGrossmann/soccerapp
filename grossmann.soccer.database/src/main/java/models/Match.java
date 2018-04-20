@@ -22,6 +22,9 @@ public class Match {
     private Group tGroupByGroupId;
     private Collection<MatchResult> tMatchResultsByMatchId;
 
+    public Match() {
+    }
+
     @Id
     @Column(name = "MatchID")
     public int getMatchId() {

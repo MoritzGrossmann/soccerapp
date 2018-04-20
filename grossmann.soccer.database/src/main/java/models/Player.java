@@ -6,7 +6,7 @@ import java.sql.Date;
 @Entity
 @Table(name = "t_player", schema = "soccer", catalog = "")
 public class Player {
-    private Integer teamId;
+    private int id;
     private Integer trikotNr;
     private String name;
     private Date birthDate;
@@ -15,16 +15,22 @@ public class Player {
     private Integer yellowCards;
     private Integer yellowRedCards;
     private Integer redCards;
+
     private Team tTeamByTeamId;
 
-    @Basic
-    @Column(name = "TeamID")
-    public Integer getTeamId() {
-        return teamId;
+    public Player() {
     }
 
-    public void setTeamId(Integer teamId) {
-        this.teamId = teamId;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "Id")
+    public int getId() {
+        return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
@@ -114,7 +120,6 @@ public class Player {
 
         Player player = (Player) o;
 
-        if (teamId != null ? !teamId.equals(player.teamId) : player.teamId != null) return false;
         if (trikotNr != null ? !trikotNr.equals(player.trikotNr) : player.trikotNr != null) return false;
         if (name != null ? !name.equals(player.name) : player.name != null) return false;
         if (birthDate != null ? !birthDate.equals(player.birthDate) : player.birthDate != null) return false;
@@ -130,8 +135,7 @@ public class Player {
 
     @Override
     public int hashCode() {
-        int result = teamId != null ? teamId.hashCode() : 0;
-        result = 31 * result + (trikotNr != null ? trikotNr.hashCode() : 0);
+        int result = trikotNr != null ? trikotNr.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
         result = 31 * result + (minutes != null ? minutes.hashCode() : 0);

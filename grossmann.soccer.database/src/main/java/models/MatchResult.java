@@ -14,6 +14,9 @@ public class MatchResult {
     private int resultTypeId;
     private Match tMatchByMatchId;
 
+    public MatchResult() {
+    }
+
     @Basic
     @Column(name = "PointsTeam1")
     public int getPointsTeam1() {

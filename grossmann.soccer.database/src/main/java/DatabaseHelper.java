@@ -1,3 +1,4 @@
+import models.Match;
 import models.Player;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,12 @@ public class DatabaseHelper {
 
     public void persistPlayers(Collection<Player> players) {
         EntityManager entityManager = getEntityManager();
-        players.forEach(entityManager::persist);
+        players.forEach(player -> {
+            entityManager.getTransaction().begin();
+            entityManager.persist(player);
+            entityManager.getTransaction().commit();
+        });
+
+        entityManager.close();
     }
 }

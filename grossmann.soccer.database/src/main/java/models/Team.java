@@ -25,6 +25,10 @@ public class Team {
 
     }
 
+    public Team(int teamId) {
+        this.teamId = teamId;
+    }
+
     @Basic
     @Column(name = "ShortName")
     public String getShortName() {

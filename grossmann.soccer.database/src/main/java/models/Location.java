@@ -17,6 +17,9 @@ public class Location {
         this.locationStadium = locationStadium;
     }
 
+    public Location() {
+    }
+
     @Id
     @Column(name = "LocationiD")
     public int getLocationiD() {
