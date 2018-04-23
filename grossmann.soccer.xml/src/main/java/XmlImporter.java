@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import models.*;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -186,9 +187,9 @@ public class XmlImporter {
 
     private Team parseTeamXml(Element xmlTeam) {
         Team team = new Team();
-        team.setTeamId(Integer.parseInt(xmlTeam.getChildText("TeamId", xmlTeam.getNamespace())));
+        team.setId(Integer.parseInt(xmlTeam.getChildText("TeamId", xmlTeam.getNamespace())));
         team.setShortName(xmlTeam.getChildText("ShortName", xmlTeam.getNamespace()));
-        team.setTeamIconUrl(xmlTeam.getChildText("TeamIconUrl", xmlTeam.getNamespace()));
+        team.setIconUrl(xmlTeam.getChildText("TeamIconUrl", xmlTeam.getNamespace()));
         team.setTeamName(xmlTeam.getChildText("TeamName", xmlTeam.getNamespace()));
         return team;
     }
@@ -197,11 +198,11 @@ public class XmlImporter {
         MatchResult matchResult = new MatchResult();
         matchResult.setPointsTeam1(Integer.parseInt(xmlMatchResult.getChildText("PointsTeam1", xmlMatchResult.getNamespace())));
         matchResult.setPointsTeam2(Integer.parseInt(xmlMatchResult.getChildText("PointsTeam2", xmlMatchResult.getNamespace())));
-        matchResult.setResultDescription(xmlMatchResult.getChildText("ResultDescription", xmlMatchResult.getNamespace()));
-        matchResult.setResultId(Integer.parseInt(xmlMatchResult.getChildText("ResultID", xmlMatchResult.getNamespace())));
-        matchResult.setResultName(xmlMatchResult.getChildText("ResultName", xmlMatchResult.getNamespace()));
-        matchResult.setResultOrderId(Integer.parseInt(xmlMatchResult.getChildText("ResultOrderID", xmlMatchResult.getNamespace())));
-        matchResult.setResultTypeId(Integer.parseInt(xmlMatchResult.getChildText("ResultTypeID", xmlMatchResult.getNamespace())));
+        matchResult.setDescription(xmlMatchResult.getChildText("ResultDescription", xmlMatchResult.getNamespace()));
+        matchResult.setId(Integer.parseInt(xmlMatchResult.getChildText("ResultID", xmlMatchResult.getNamespace())));
+        matchResult.setName(xmlMatchResult.getChildText("ResultName", xmlMatchResult.getNamespace()));
+        matchResult.setOrderId(Integer.parseInt(xmlMatchResult.getChildText("ResultOrderID", xmlMatchResult.getNamespace())));
+        matchResult.setTypeId(Integer.parseInt(xmlMatchResult.getChildText("ResultTypeID", xmlMatchResult.getNamespace())));
         return matchResult;
     }
 
@@ -210,10 +211,10 @@ public class XmlImporter {
         goal.setComment(xmlGoal.getChildText("Comment", xmlGoal.getNamespace()));
         goal.setGoalGetterId(Integer.parseInt(xmlGoal.getChildText("GoalGetterID", xmlGoal.getNamespace())));
         goal.setGoalGetterName(xmlGoal.getChildText("GoalGetterName", xmlGoal.getNamespace()));
-        goal.setGoalId(Integer.parseInt(xmlGoal.getChildText("GoalID", xmlGoal.getNamespace())));
-        goal.setIsOverTime(Byte.parseByte(xmlGoal.getChildText("IsOvertime", xmlGoal.getNamespace())));
-        goal.setIsOwnGoal(Byte.parseByte(xmlGoal.getChildText("IsOwnGoal", xmlGoal.getNamespace())));
-        goal.setIsPenalty(Byte.parseByte(xmlGoal.getChildText("IsPenalty", xmlGoal.getNamespace())));
+        goal.setId(Integer.parseInt(xmlGoal.getChildText("GoalID", xmlGoal.getNamespace())));
+        goal.setOverTime(Boolean.parseBoolean(xmlGoal.getChildText("IsOvertime", xmlGoal.getNamespace())));
+        goal.setOwnGoal(Boolean.parseBoolean(xmlGoal.getChildText("IsOwnGoal", xmlGoal.getNamespace())));
+        goal.setPenalty(Boolean.parseBoolean(xmlGoal.getChildText("IsPenalty", xmlGoal.getNamespace())));
 
         try {
             goal.setMatchMinute(Integer.parseInt(xmlGoal.getChildText("MatchMinute", xmlGoal.getNamespace())));
@@ -228,9 +229,9 @@ public class XmlImporter {
 
     private Group parseGroupXml(Element xmlGroup) {
         Group group = new Group();
-        group.setGroupId(Integer.parseInt(xmlGroup.getChildText("GroupID", xmlGroup.getNamespace())));
-        group.setGroupName(xmlGroup.getChildText("GroupName", xmlGroup.getNamespace()));
-        group.setGroupOrderId(Integer.parseInt(xmlGroup.getChildText("GroupOrderID", xmlGroup.getNamespace())));
+        group.setId(Integer.parseInt(xmlGroup.getChildText("GroupID", xmlGroup.getNamespace())));
+        group.setName(xmlGroup.getChildText("GroupName", xmlGroup.getNamespace()));
+        group.setOrderId(Integer.parseInt(xmlGroup.getChildText("GroupOrderID", xmlGroup.getNamespace())));
         return group;
     }
 }

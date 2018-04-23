@@ -1,9 +1,15 @@
+package controller;
+
 import models.Match;
 import models.Player;
 import models.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Collection;
 
 public class DatabaseHelper {
@@ -12,6 +18,14 @@ public class DatabaseHelper {
 
     private EntityManager getEntityManager() {
         return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
+    }
+
+    public Collection<Team> getTeams() {
+        EntityManager entityManager = getEntityManager();
+        entityManager.getTransaction().begin();
+        TypedQuery<Team> query = entityManager.createQuery("SELECT v from Team v", Team.class);
+        entityManager.getTransaction().commit();
+        return query.getResultList();
     }
 
     private Collection<Match> getMatches() {

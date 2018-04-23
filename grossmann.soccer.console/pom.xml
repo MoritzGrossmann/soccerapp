@@ -23,7 +23,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>grossmann.soccerapp.database</groupId>
+            <groupId>grossmann.soccer.database</groupId>
             <artifactId>grossmann-soccer-database</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
