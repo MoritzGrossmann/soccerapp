@@ -13,6 +13,12 @@
   </head>
   <body>
     <table>
+      <%
+        int i = 3, k = 4;
+        int c = i + k;
+      %>
+
+      <p><h1><%=String.format("k = %d, i = %d, k + i = %d", k, i, c)%></h1></p>
       <%for(Team team : new DatabaseHelper().getTeams()){
           %><tr><td><img src=<%=String.format("\"%s\"", team.getIconUrl())%></td><td></td></tr><%
       }%>

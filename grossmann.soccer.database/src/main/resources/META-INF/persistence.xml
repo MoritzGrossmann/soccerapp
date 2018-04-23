@@ -13,11 +13,10 @@
         <class>models.Player</class>
         <class>models.Team</class>
         <properties>
+            <property name="eclipselink.jdbc.bind-parameters" value="true"/>
             <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/soccer?useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
             <property name="javax.persistence.jdbc.user" value="soccer"/>
             <property name="javax.persistence.jdbc.password" value="soccer"/>
-            <property name="eclipselink.target-database"
-                      value="MySQL"/>
         </properties>
 
     </persistence-unit>

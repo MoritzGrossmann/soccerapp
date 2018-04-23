@@ -8,14 +8,7 @@ import java.util.Collection;
 public class Main {
 
     public static void main(String[] args) {
-        File playerFile = new File("C:\\Users\\morit\\IdeaProjects\\soccer\\grossmann.soccer.console\\src\\main\\resources\\Player-2018.csv");
-
-        try {
-            Collection<Player> players = new CsvImporter(playerFile).readPlayers();
-            DatabaseHelper databaseHelper = new DatabaseHelper();
-            databaseHelper.persistPlayers(players);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        DatabaseHelper databaseHelper = new DatabaseHelper();
+        databaseHelper.getTeams().forEach(team -> System.out.printf("%s\n", team.getTeamName()));
     }
 }

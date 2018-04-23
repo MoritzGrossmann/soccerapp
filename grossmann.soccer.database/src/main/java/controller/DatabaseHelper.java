@@ -5,6 +5,7 @@ import models.Player;
 import models.Team;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.sql.Driver;
@@ -17,7 +18,9 @@ public class DatabaseHelper {
     private static final String PERSISTENCE_UNIT = "soccerunit";
 
     private EntityManager getEntityManager() {
-        return Persistence.createEntityManagerFactory(PERSISTENCE_UNIT).createEntityManager();
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        return entityManager;
     }
 
     public Collection<Team> getTeams() {

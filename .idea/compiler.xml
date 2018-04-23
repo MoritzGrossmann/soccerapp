@@ -16,9 +16,9 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="grossmann.soccer.console" target="1.8" />
-      <module name="grossmann.soccer.csv" target="1.7" />
+      <module name="grossmann.soccer.csv" target="1.8" />
       <module name="grossmann.soccer.database" target="1.8" />
-      <module name="grossmann.soccer.web" target="1.5" />
+      <module name="grossmann.soccer.web" target="1.8" />
       <module name="grossmann.soccer.xml" target="1.8" />
     </bytecodeTargetLevel>
   </component>
