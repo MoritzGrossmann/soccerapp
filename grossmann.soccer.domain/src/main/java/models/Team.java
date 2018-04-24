@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "t_team", schema = "soccer", catalog = "")
+@Table(name = "t_team", schema = "soccer")
 public class Team {
     private String shortName;
     private String iconUrl;
@@ -111,5 +111,10 @@ public class Team {
 
     public void setLayers(Collection<Player> layers) {
         this.layers = layers;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Team: %s\nIconUrl: %s\nKurzname: %s", this.getTeamName(), this.getIconUrl(), this.getShortName());
     }
 }

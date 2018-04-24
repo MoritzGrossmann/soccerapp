@@ -5,7 +5,7 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "t_player", schema = "soccer", catalog = "")
+@Table(name = "t_player", schema = "soccer")
 public class Player {
     private Integer trikotNr;
     private String name;

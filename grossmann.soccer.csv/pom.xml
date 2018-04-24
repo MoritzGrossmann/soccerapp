@@ -29,8 +29,8 @@
             <version>1.5</version>
         </dependency>
         <dependency>
-            <groupId>grossmann.soccer.database</groupId>
-            <artifactId>grossmann-soccer-database</artifactId>
+            <groupId>grossmann.soccer.domain</groupId>
+            <artifactId>grossmann-soccer-domain</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

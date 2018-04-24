@@ -7,6 +7,7 @@
           <element id="module-output" name="grossmann.soccer.web" />
           <element id="module-output" name="grossmann.soccer.database" />
           <element id="jpa-descriptors" facet="grossmann.soccer.database/jpa/JPA" />
+          <element id="module-output" name="grossmann.soccer.domain" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa:2.7.1" />
@@ -16,7 +17,6 @@
           <element id="library" level="project" name="Maven: org.glassfish:javax.json:1.0.4" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.7.1" />
           <element id="library" level="project" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.7.1" />
-          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.37" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="grossmann.soccer.web/web/Web" />

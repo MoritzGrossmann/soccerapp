@@ -9,6 +9,7 @@
         <module name="grossmann.soccer.console" />
         <module name="grossmann.soccer.csv" />
         <module name="grossmann.soccer.database" />
+        <module name="grossmann.soccer.domain" />
         <module name="grossmann.soccer.web" />
         <module name="grossmann.soccer.xml" />
         <module name="grossmann.soccerapp.web" />
@@ -18,6 +19,7 @@
       <module name="grossmann.soccer.console" target="1.8" />
       <module name="grossmann.soccer.csv" target="1.8" />
       <module name="grossmann.soccer.database" target="1.8" />
+      <module name="grossmann.soccer.domain" target="1.8" />
       <module name="grossmann.soccer.web" target="1.8" />
       <module name="grossmann.soccer.xml" target="1.8" />
     </bytecodeTargetLevel>

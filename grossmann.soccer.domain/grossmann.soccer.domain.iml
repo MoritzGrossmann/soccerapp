@@ -11,9 +11,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="grossmann.soccer.database" />
-    <orderEntry type="library" name="Maven: mysql:mysql-connector-java:8.0.11" level="project" />
-    <orderEntry type="library" scope="RUNTIME" name="Maven: com.google.protobuf:protobuf-java:2.6.0" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:javax.persistence:2.2.0" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.asm:2.7.1" level="project" />
@@ -21,8 +18,5 @@
     <orderEntry type="library" name="Maven: org.glassfish:javax.json:1.0.4" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.jpa.jpql:2.7.1" level="project" />
     <orderEntry type="library" name="Maven: org.eclipse.persistence:org.eclipse.persistence.core:2.7.1" level="project" />
-    <orderEntry type="module" module-name="grossmann.soccer.domain" />
-    <orderEntry type="module" module-name="grossmann.soccer.csv" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-csv:1.5" level="project" />
   </component>
 </module>

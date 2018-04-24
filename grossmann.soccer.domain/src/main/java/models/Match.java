@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "t_match", schema = "soccer", catalog = "")
+@Table(name = "t_match", schema = "soccer")
 public class Match {
     private int id;
     private Date lastUpdateTime;

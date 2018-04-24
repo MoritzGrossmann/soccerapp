@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-@Table(name = "t_group", schema = "soccer", catalog = "")
+@Table(name = "t_group", schema = "soccer")
 public class Group {
     private int id;
     private String name;
