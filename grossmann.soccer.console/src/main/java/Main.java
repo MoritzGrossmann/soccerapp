@@ -1,14 +1,10 @@
-import controller.DatabaseHelper;
-import models.Player;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Collection;
+import controller.SoccerJpaPersistence;
+import interfaces.SoccerPersistence;
 
 public class Main {
 
     public static void main(String[] args) {
-        DatabaseHelper databaseHelper = new DatabaseHelper();
+        SoccerPersistence databaseHelper = new SoccerJpaPersistence();
         databaseHelper.getTeams().forEach(team -> System.out.printf("%s\n", team.getTeamName()));
     }
 }

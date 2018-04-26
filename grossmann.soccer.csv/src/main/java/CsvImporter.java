@@ -1,4 +1,4 @@
-import controller.DatabaseHelper;
+import controller.SoccerJpaPersistence;
 import models.Player;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVRecord;
@@ -24,7 +24,7 @@ public class CsvImporter {
 
     public Collection<Player> readPlayers() throws IOException {
 
-        DatabaseHelper databaseHelper = new DatabaseHelper();
+        SoccerJpaPersistence soccerJpaPersistence = new SoccerJpaPersistence();
 
         Collection<Player> players = new ArrayList<>();
 
@@ -38,7 +38,7 @@ public class CsvImporter {
 
         for (CSVRecord record : records) {
                 Player player = new Player();
-                player.setTeam(databaseHelper.getTeamById(Integer.parseInt(record.get("TeamId"))));
+                player.setTeam(soccerJpaPersistence.getTeamById(Integer.parseInt(record.get("TeamId"))));
                 try {
                     player.setTrikotNr(Integer.parseInt(record.get("TrikotNr")));
                 } catch (NumberFormatException e) {

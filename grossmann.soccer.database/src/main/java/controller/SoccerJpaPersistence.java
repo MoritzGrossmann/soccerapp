@@ -1,6 +1,6 @@
 package controller;
 
-import interfaces.IPersistSoccerData;
+import interfaces.SoccerPersistence;
 import models.Group;
 import models.Match;
 import models.Player;
@@ -10,13 +10,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import java.lang.reflect.Type;
-import java.sql.Driver;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.Collection;
 
-public class DatabaseHelper implements IPersistSoccerData{
+public class SoccerJpaPersistence implements SoccerPersistence {
 
     private static final String PERSISTENCE_UNIT = "soccerunit";
 

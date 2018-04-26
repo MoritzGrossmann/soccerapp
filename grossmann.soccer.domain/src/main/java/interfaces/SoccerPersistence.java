@@ -5,7 +5,7 @@ import models.Team;
 
 import java.util.Collection;
 
-public interface IPersistSoccerData {
+public interface SoccerPersistence {
 
     Collection<Team> getTeams();
 
