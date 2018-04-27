@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<f:metadata>
+    <f:viewParam id="id" name="groupId"
+                 value="#{groupDetailBean.id}" /></f:metadata>
+
+
+
+    <h:body>
+        <ui:composition template="shared/layout.xhtml">
+            <ui:define name="content">
+                <h1><h:outputLabel value="${groupDetailBean.group.name}"/></h1>
+                <h:link value="vorheriger Spieltag" outcome="group">
+                    <f:param name="groupId" value="${groupDetailBean.previousGroup}"/>
+                </h:link>
+                <h:link value="nächster Spieltag" outcome="group">
+                    <f:param name="groupId" value="${groupDetailBean.nextGroup}"/>
+                </h:link>
+                <ui:repeat value="${groupDetailBean.group.matches}" var="match">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h:outputLabel value="${match.team1.teamName}"/>
+                        </div>
+                        <div class="col-md-4">
+                            ${match.results[match.results.size()-1].pointsTeam1}:${match.results[match.results.size()-1].pointsTeam2}
+                        </div>
+                        <div class="col-md-4">
+                            <h:outputLabel value="${match.team2.teamName}"/>
+                        </div>
+                    </div>
+                </ui:repeat>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

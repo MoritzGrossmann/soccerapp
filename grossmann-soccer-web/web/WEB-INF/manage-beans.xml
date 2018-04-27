@@ -12,8 +12,26 @@
 	</managed-bean>
 
 	<managed-bean>
+		<managed-bean-name>groupBean</managed-bean-name>
+		<managed-bean-class>bean.GroupBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
 		<managed-bean-name>teamDetailBean</managed-bean-name>
 		<managed-bean-class>bean.TeamDetailBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>groupDetailBean</managed-bean-name>
+		<managed-bean-class>bean.GroupDetailBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>playerBean</managed-bean-name>
+		<managed-bean-class>bean.PlayerBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>

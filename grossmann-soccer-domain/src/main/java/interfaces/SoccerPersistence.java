@@ -1,6 +1,7 @@
 package interfaces;
 
 import models.Group;
+import models.Player;
 import models.Team;
 
 import java.util.Collection;
@@ -15,4 +16,7 @@ public interface SoccerPersistence {
 
     Collection<Group> getGroups();
 
+    Group getGroupById(int groupId);
+
+    Player getPlayerById(int playerId);
 }

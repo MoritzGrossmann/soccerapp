@@ -60,6 +60,18 @@ public class SoccerJpaPersistence implements SoccerPersistence {
         return query.getResultList();
     }
 
+    @Override
+    public Group getGroupById(int groupId) {
+        EntityManager entityManager = getEntityManager();
+        return entityManager.find(Group.class, groupId);
+    }
+
+    @Override
+    public Player getPlayerById(int playerId) {
+        EntityManager entityManager = getEntityManager();
+        return entityManager.find(Player.class, playerId);
+    }
+
     public void persistPlayer(Player player) {
         EntityManager entityManager = getEntityManager();
         entityManager.persist(player);
