@@ -3,13 +3,12 @@
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
-        <option value="$PROJECT_DIR$/grossmann.soccer.web/pom.xml" />
-        <option value="$PROJECT_DIR$/grossmann.soccer.xml/pom.xml" />
-        <option value="$PROJECT_DIR$/grossmann.soccer.database/pom.xml" />
-        <option value="$PROJECT_DIR$/grossmann.soccer.csv/pom.xml" />
-        <option value="$PROJECT_DIR$/grossmann.soccer.console/pom.xml" />
-        <option value="$PROJECT_DIR$/grossmann.soccer.web/pom.xml" />
-        <option value="$PROJECT_DIR$/grossmann.soccer.domain/pom.xml" />
+        <option value="$PROJECT_DIR$/grossmann-soccer-web/pom.xml" />
+        <option value="$PROJECT_DIR$/grossmann-soccer-domain/pom.xml" />
+        <option value="$PROJECT_DIR$/grossmann-soccer-database/pom.xml" />
+        <option value="$PROJECT_DIR$/grossmann-soccer-csv/pom.xml" />
+        <option value="$PROJECT_DIR$/grossmann-soccer-console/pom.xml" />
+        <option value="$PROJECT_DIR$/grossmann-soccer-xml/pom.xml" />
       </list>
     </option>
   </component>
