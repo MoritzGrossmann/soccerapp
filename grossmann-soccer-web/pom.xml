@@ -61,9 +61,8 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-
-
     </dependencies>
+
         <repositories>
             <repository>
                 <id>java.net.m2</id>
@@ -71,4 +70,5 @@
                 <url>http://download.java.net/maven/2</url>
             </repository>
         </repositories>
+
 </project>

@@ -24,9 +24,9 @@ public class SoccerJpaPersistence implements SoccerPersistence {
     @Override
     public Collection<Team> getTeams() {
         EntityManager entityManager = getEntityManager();
-        entityManager.getTransaction().begin();
+        //entityManager.getTransaction().begin();
         TypedQuery<Team> query = entityManager.createQuery("SELECT t from Team t", Team.class);
-        entityManager.getTransaction().commit();
+        //entityManager.getTransaction().commit();
         return query.getResultList();
     }
 

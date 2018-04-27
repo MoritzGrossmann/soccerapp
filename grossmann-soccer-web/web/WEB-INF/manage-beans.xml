@@ -10,4 +10,10 @@
 		<managed-bean-class>bean.TeamBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+
+	<managed-bean>
+		<managed-bean-name>teamDetailBean</managed-bean-name>
+		<managed-bean-class>bean.TeamDetailBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+    <f:viewParam id="id" name="teamId"
+                         value="#{teamDetailBean.id}" /></f:metadata>
+
+<f:view>
+    <h1><h:outputLabel value="${teamDetailBean.team.teamName}"/></h1>
+    <h:graphicImage value="${teamDetailBean.team.iconUrl}"/>
+    <h:dataTable var="player" value="${teamDetailBean.team.players}">
+        <h:column>
+            <f:facet name="header">Trikotnummer</f:facet>
+            ${player.trikotNr}
+        </h:column>
+
+        <h:column>
+            <f:facet name="header">Name</f:facet>
+            ${player.name}
+        </h:column>
+    </h:dataTable>
+</f:view>
+</html>

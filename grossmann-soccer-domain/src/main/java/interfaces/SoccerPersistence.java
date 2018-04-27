@@ -14,4 +14,5 @@ public interface SoccerPersistence {
     void persistTeam(Team team);
 
     Collection<Group> getGroups();
+
 }
