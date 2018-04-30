@@ -1,6 +1,7 @@
 package interfaces;
 
 import models.Group;
+import models.Match;
 import models.Player;
 import models.Team;
 
@@ -19,4 +20,6 @@ public interface SoccerPersistence {
     Group getGroupById(int groupId);
 
     Player getPlayerById(int playerId);
+
+    Match getMatchById(int matchId);
 }

@@ -9,8 +9,6 @@
     <f:viewParam id="id" name="groupId"
                  value="#{groupDetailBean.id}" /></f:metadata>
 
-
-
     <h:body>
         <ui:composition template="shared/layout.xhtml">
             <ui:define name="content">
@@ -22,6 +20,8 @@
                     <f:param name="groupId" value="${groupDetailBean.nextGroup}"/>
                 </h:link>
                 <ui:repeat value="${groupDetailBean.group.matches}" var="match">
+                    <h:link outcome="match">
+                        <f:param name="matchId" value="${match.id}"/>
                     <div class="row">
                         <div class="col-md-4">
                             <h:outputLabel value="${match.team1.teamName}"/>
@@ -33,6 +33,7 @@
                             <h:outputLabel value="${match.team2.teamName}"/>
                         </div>
                     </div>
+                    </h:link>
                 </ui:repeat>
             </ui:define>
         </ui:composition>
