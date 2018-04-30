@@ -14,21 +14,52 @@
     <f:viewParam id="id" name="teamId"
                          value="#{teamDetailBean.id}" /></f:metadata>
 
-<f:view>
-    <h1><h:outputLabel value="${teamDetailBean.team.teamName}"/></h1>
-    <h:graphicImage value="${teamDetailBean.team.iconUrl}"/>
-    <h:dataTable var="player" value="${teamDetailBean.team.players}">
-        <h:column>
-            <f:facet name="header">Trikotnummer</f:facet>
-            ${player.trikotNr}
-        </h:column>
+<h:body>
+    <ui:composition template="shared/layout.xhtml">
+        <ui:define name="content">
 
-        <h:column>
-            <f:facet name="header">Name</f:facet>
-            <h:link value="${player.name}" outcome="playerDetails">
-                <f:param name="playerId" value="${player.id}"/>
-            </h:link>
-        </h:column>
-    </h:dataTable>
-</f:view>
+                    <h1><h:outputLabel value="${teamDetailBean.team.teamName}"/></h1>
+                    <h:graphicImage value="${teamDetailBean.team.iconUrl}"/>
+            <div class="row">
+                <div class="col-md-5">
+                    <h3><h:outputText value="Spieler"/></h3>
+                    <h:dataTable var="player" value="${teamDetailBean.team.players}">
+                        <h:column>
+                            <f:facet name="header">Trikotnummer</f:facet>
+                            ${player.trikotNr}
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Name</f:facet>
+                            <h:link value="${player.name}" outcome="playerDetails">
+                                <f:param name="playerId" value="${player.id}"/>
+                            </h:link>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                <div class="col-md-7">
+                    <h3><h:outputText value="Spiele"/></h3>
+                    <ui:repeat value="${teamDetailBean.matches}" var="match">
+                        <h:link outcome="match">
+                            <f:param name="matchId" value="${match.id}"/>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h:graphicImage value="${match.team1.iconUrl}" height="20px" width="20px" style="margin-right: 10px"/>
+                                    <h:outputLabel value="${match.team1.teamName}"/>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    ${match.results[match.results.size()-1].pointsTeam1}:${match.results[match.results.size()-1].pointsTeam2}
+                                </div>
+                                <div class="col-md-5 text-right">
+                                    <h:outputLabel value="${match.team2.teamName}"/>
+                                    <h:graphicImage value="${match.team2.iconUrl}" height="20px" width="20px" style="margin-left: 10px"/>
+                                </div>
+                            </div>
+                        </h:link>
+                    </ui:repeat>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</h:body>
 </html>

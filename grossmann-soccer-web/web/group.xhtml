@@ -13,24 +13,32 @@
         <ui:composition template="shared/layout.xhtml">
             <ui:define name="content">
                 <h1><h:outputLabel value="${groupDetailBean.group.name}"/></h1>
-                <h:link value="vorheriger Spieltag" outcome="group">
-                    <f:param name="groupId" value="${groupDetailBean.previousGroup}"/>
-                </h:link>
-                <h:link value="nächster Spieltag" outcome="group">
-                    <f:param name="groupId" value="${groupDetailBean.nextGroup}"/>
-                </h:link>
+               <div class="row">
+                   <div class="col-md-3">
+                        <h:link value="vorheriger Spieltag" outcome="group">
+                            <f:param name="groupId" value="${groupDetailBean.previousGroup}"/>
+                        </h:link>
+                   </div>
+                   <div class="col-md-3 offset-md-1 text-right">
+                        <h:link value="nächster Spieltag" outcome="group">
+                            <f:param name="groupId" value="${groupDetailBean.nextGroup}"/>
+                        </h:link>
+                   </div>
+               </div>
                 <ui:repeat value="${groupDetailBean.group.matches}" var="match">
                     <h:link outcome="match">
                         <f:param name="matchId" value="${match.id}"/>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                            <h:graphicImage value="${match.team1.iconUrl}" height="20px" width="20px" style="margin-right: 10px"/>
                             <h:outputLabel value="${match.team1.teamName}"/>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-1 text-center">
                             ${match.results[match.results.size()-1].pointsTeam1}:${match.results[match.results.size()-1].pointsTeam2}
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3 text-right">
                             <h:outputLabel value="${match.team2.teamName}"/>
+                            <h:graphicImage value="${match.team2.iconUrl}" height="20px" width="20px" style="margin-left: 10px"/>
                         </div>
                     </div>
                     </h:link>

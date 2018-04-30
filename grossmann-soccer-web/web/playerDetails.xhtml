@@ -14,6 +14,51 @@
     <ui:composition template="shared/layout.xhtml">
         <ui:define name="content">
             <h1><h:outputText value="${playerBean.player.name}"/></h1>
+            <div class="row">
+                <div class="col-md-2">
+                    <h:outputText value="Tore"/>
+                </div>
+                <div class="col-md-1">
+                    <h:graphicImage value="https://icon-icons.com/icons2/510/PNG/512/ios7-football-outline_icon-icons.com_50265.png" height="20px"/>
+                </div>
+                <div class="col-md-2">
+                    <h:outputText value="${playerBean.player.goals}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h:outputText value="Gelbe Karten"/>
+                </div>
+                <div class="col-md-1">
+                    <h:graphicImage value="https://media.4teachers.de/images/thumbs/image_thumb.15160.png" height="20px"/>
+                </div>
+                <div class="col-md-2">
+                    <h:outputText value="${playerBean.player.yellowCards}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h:outputText value="Gelb-Rote Karten"/>
+                </div>
+                <div class="col-md-1">
+                    <h:graphicImage value="https://media.4teachers.de/images/thumbs/image_thumb.15067.jpg" height="20px"/>
+                </div>
+                <div class="col-md-2">
+                    <h:outputText value="${playerBean.player.yellowRedCards}"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <h:outputText value="Rote Karten"/>
+                </div>
+                <div class="col-md-1">
+                    <h:graphicImage value="https://media.4teachers.de/images/thumbs/image_thumb.15159.png" height="20px"/>
+                </div>
+                <div class="col-md-2">
+                    <h:outputText value="${playerBean.player.redCards}"/>
+                </div>
+            </div>
+
         </ui:define>
     </ui:composition>
 </h:body>

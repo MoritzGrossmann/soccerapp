@@ -15,9 +15,26 @@
     <ui:composition template="shared/layout.xhtml">
         <ui:define name="content">
             <h:link value="${matchBean.match.group.name}" outcome="group">
-                <f:param id="groupId" value="${matchBean.match.group.id}"/>
+                <f:param name="groupId" value="${matchBean.match.group.id}"/>
             </h:link>
             <h1>${matchBean.match.team1.teamName} ${matchBean.match.results[matchBean.match.results.size()-1].pointsTeam1} : ${matchBean.match.results[matchBean.match.results.size()-1].pointsTeam2} ${matchBean.match.team2.teamName}</h1>
+            <h3>Tore</h3>
+            <h:dataTable var="goal" value="${matchBean.match.goals}" class="table">
+                <h:column>
+                    <f:facet name="header">Minute</f:facet>
+                    <h:outputText value="${goal.matchMinute}."/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Spieltstand</f:facet>
+                    <h:outputText value="${goal.scoreTeam1}:${goal.scoreTeam2}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Torschütze</f:facet>
+                    <h:outputText value="${goal.goalGetterName}"/>
+                </h:column>
+            </h:dataTable>
         </ui:define>
     </ui:composition>
 </h:body>

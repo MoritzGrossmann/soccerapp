@@ -24,17 +24,10 @@ public class TeamBean implements Serializable{
         return soccerPersistence.getTeams();
     }
 
-    private Collection<Integer> zahlen = new ArrayList<>();
-
-    public Collection<Integer> getZahlen() {
-        zahlen.add(1);
-        zahlen.add(2);
-        zahlen.add(3);
-        return zahlen;
-    }
-
     public Team getTeamById(int teamId) {
         SoccerPersistence soccerPersistence = new SoccerJpaPersistence();
         return soccerPersistence.getTeamById(teamId);
     }
+
+
 }

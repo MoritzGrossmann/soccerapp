@@ -1,12 +1,13 @@
 package models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "t_location", schema = "soccer")
-public class Location {
+public class Location implements Serializable {
     private int id;
     private String city;
     private String stadium;

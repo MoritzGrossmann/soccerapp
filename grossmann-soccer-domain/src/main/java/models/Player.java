@@ -1,12 +1,13 @@
 package models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "t_player", schema = "soccer")
-public class Player {
+public class Player implements Serializable {
     private Integer trikotNr;
     private String name;
     private Date birthDate;

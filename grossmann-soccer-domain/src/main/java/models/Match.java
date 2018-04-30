@@ -1,13 +1,14 @@
 package models;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "t_match", schema = "soccer")
-public class Match {
+public class Match implements Comparable<Match>, Serializable {
     private int id;
     private Date lastUpdateTime;
     private Date dateTime;
@@ -182,5 +183,10 @@ public class Match {
 
     public void setResults(Collection<MatchResult> results) {
         this.results = results;
+    }
+
+    @Override
+    public int compareTo(Match o) {
+        return this.group.getOrderId() - o.group.getOrderId();
     }
 }

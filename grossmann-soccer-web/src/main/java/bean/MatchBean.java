@@ -29,10 +29,8 @@ public class MatchBean {
     }
 
     public Match getMatch() {
-        if (this.match == null) {
-            SoccerPersistence soccerPersistence = new SoccerJpaPersistence();
-            this.match = soccerPersistence.getMatchById(this.id);
-        }
+        SoccerPersistence soccerPersistence = new SoccerJpaPersistence();
+        this.match = soccerPersistence.getMatchById(this.id);
         return this.match;
     }
 
