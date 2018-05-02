@@ -1,11 +1,10 @@
 package interfaces;
 
-import models.Group;
-import models.Match;
-import models.Player;
-import models.Team;
+import models.*;
+
 
 import java.util.Collection;
+import java.util.Collections;
 
 public interface SoccerPersistence {
 
@@ -22,4 +21,8 @@ public interface SoccerPersistence {
     Player getPlayerById(int playerId);
 
     Match getMatchById(int matchId);
+
+    ResultTable getTable(int leagueId);
+
+    Collection<League> getLeagues();
 }

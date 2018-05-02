@@ -10,7 +10,7 @@ import java.util.Objects;
 public class League implements Serializable {
     private int id;
     private String name;
-    private Collection<Match> league;
+    private Collection<Match> matches;
 
     public League() {
     }
@@ -56,11 +56,11 @@ public class League implements Serializable {
     }
 
     @OneToMany(mappedBy = "league")
-    public Collection<Match> getLeague() {
-        return league;
+    public Collection<Match> getMatches() {
+        return matches;
     }
 
-    public void setLeague(Collection<Match> league) {
-        this.league = league;
+    public void setMatches(Collection<Match> league) {
+        this.matches = league;
     }
 }

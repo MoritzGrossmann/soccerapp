@@ -1,16 +1,15 @@
 package controller;
 
 import interfaces.SoccerPersistence;
-import models.Group;
-import models.Match;
-import models.Player;
-import models.Team;
+import models.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class SoccerJpaPersistence implements SoccerPersistence {
 
@@ -24,9 +23,7 @@ public class SoccerJpaPersistence implements SoccerPersistence {
     @Override
     public Collection<Team> getTeams() {
         EntityManager entityManager = getEntityManager();
-        //entityManager.getTransaction().begin();
         TypedQuery<Team> query = entityManager.createQuery("SELECT t from Team t", Team.class);
-        //entityManager.getTransaction().commit();
         return query.getResultList();
     }
 
@@ -76,6 +73,22 @@ public class SoccerJpaPersistence implements SoccerPersistence {
     public Match getMatchById(int matchId) {
         EntityManager entityManager = getEntityManager();
         return entityManager.find(Match.class, matchId);
+    }
+
+    @Override
+    public ResultTable getTable(int leagueId) {
+        EntityManager entityManager = getEntityManager();
+        List<Match> matches = new ArrayList<>(entityManager.find(League.class, leagueId).getMatches());
+        return new ResultTable(matches);
+    }
+
+    @Override
+    public Collection<League> getLeagues() {
+        EntityManager entityManager = getEntityManager();
+        entityManager.getTransaction().begin();
+        TypedQuery<League> query = entityManager.createQuery("SELECT l from League l", League.class);
+        entityManager.getTransaction().commit();
+        return query.getResultList();
     }
 
     public void persistPlayer(Player player) {

@@ -5,21 +5,55 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<h:body>
 
+<f:metadata>
+    <f:viewParam id="id" name="leagueId"
+                 value="#{tableBean.id}" /></f:metadata>
+
+<h:body>
     <ui:composition template="shared/layout.xhtml">
         <ui:define name="content">
-            <h:dataTable value="${tableBean.teams.keySet()}" var="team">
+            <h:dataTable value="${tableBean.resultTable.rows}" var="row" class="table">
                 <h:column>
                     <f:facet name="header">Mannschaft</f:facet>
-                    <h:graphicImage value="${}" width="20px"/>
+                    <h:graphicImage value="${row.team.iconUrl}" width="20px"/>
                 </h:column>
 
                 <h:column>
                     <f:facet name="header">Name</f:facet>
-                    <h:link value="${team.teamName}" outcome="teamDetails">
-                        <f:param name="teamId" value="${team.id}"/>
+                    <h:link value="${row.team.teamName}" outcome="teamDetails">
+                        <f:param name="teamId" value="${row.team.id}"/>
                     </h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Spiele</f:facet>
+                    <h:outputText value="${row.matches}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">S</f:facet>
+                    <h:outputText value="${row.victories}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">U</f:facet>
+                    <h:outputText value="${row.draws}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">N</f:facet>
+                    <h:outputText value="${row.looses}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Torverhältniss</f:facet>
+                    <h:outputText value="${row.goals}:${row.goalsAgainst}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Punkte</f:facet>
+                    <h:outputText value="${row.points}"/>
                 </h:column>
             </h:dataTable>
         </ui:define>
